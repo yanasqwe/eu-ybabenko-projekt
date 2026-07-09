@@ -267,9 +267,9 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 }
 /* … am Ende abdunkeln und unsichtbar zurück an den Anfang springen */
 @keyframes tl-fade {
-  0%, 3%    { opacity: 0; }
-  9%, 88%   { opacity: 1; }
-  96%, 100% { opacity: 0; }
+  0%, 1%    { opacity: 0; }
+  4%, 93%   { opacity: 1; }
+  97%, 100% { opacity: 0; }
 }
 
 .tl-node { position: absolute; transform: translate(-50%, -50%); width: 190px; }
@@ -411,8 +411,8 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .footer-col a { display: block; color: var(--text-muted); padding: 5px 0; font-size: 0.92rem; transition: color .18s; }
 .footer-col a:hover { color: var(--text); }
 .sources { display: flex; flex-direction: column; gap: 14px; }
-.source-link { display: flex; align-items: center; gap: 12px; color: var(--text-muted) !important; transition: color .18s; }
-.source-link:hover { color: var(--text) !important; }
+.footer-col .source-link { display: flex; align-items: center; gap: 12px; color: var(--text-muted) !important; transition: color .18s; }
+.footer-col .source-link:hover { color: var(--text) !important; }
 .source-link .s-ic { width: 38px; height: 38px; flex-shrink: 0; border-radius: var(--radius-sm);
   display: grid; place-items: center; background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
 .source-link:hover .s-ic { color: var(--text); border-color: var(--border-strong); }
