@@ -198,8 +198,8 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .stat-card:hover { background: var(--surface-2); }
 .stat-card .ico { color: var(--text-dim); margin-bottom: 18px; }
 .stat-card .ico svg { width: 24px; height: 24px; }
-.stat-card .num { font-family: var(--font-serif); font-size: clamp(2rem, 3.4vw, 2.7rem);
-  font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+.stat-card .num { font-family: var(--font-sans); font-size: clamp(2rem, 3.4vw, 2.7rem);
+  font-weight: 700; letter-spacing: -0.02em; color: var(--text); font-variant-numeric: tabular-nums; }
 .stat-card .num.gold { color: var(--gold); }
 .stat-card .label { font-weight: 600; margin-top: 6px; font-size: 0.98rem; }
 .stat-card .desc { color: var(--text-muted); font-size: 0.88rem; margin-top: 4px; }
@@ -293,7 +293,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .tl-card:hover .more { opacity: 1; }
 .tl-node.up .tl-card { bottom: calc(50% + 30px); }
 .tl-node.down .tl-card { top: calc(50% + 30px); }
-.tl-card .yr { font-family: var(--font-serif); font-weight: 700; color: var(--gold); font-size: 1.1rem; }
+.tl-card .yr { font-family: var(--font-sans); font-weight: 700; color: var(--gold); font-size: 1.1rem; }
 .tl-card .tt { font-weight: 600; font-size: 0.88rem; margin: 2px 0 5px; }
 .tl-card .ds { font-size: 0.79rem; color: var(--text-muted); line-height: 1.5; }
 
@@ -315,7 +315,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .hist-item:nth-child(even) .ph { order: 2; }
 .hist-item .body { padding: 30px; align-self: center; }
 .hist-item .yr-tag {
-  display: inline-block; font-family: var(--font-serif); font-weight: 700; color: var(--gold);
+  display: inline-block; font-family: var(--font-sans); font-weight: 700; color: var(--gold);
   font-size: 1.5rem; margin-bottom: 8px;
 }
 .hist-item h3 { font-size: 1.4rem; margin-bottom: 10px; font-weight: 600; }
@@ -330,7 +330,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
 .ph .ph-face { text-align: center; z-index: 1; padding: 16px; color: var(--text-dim); }
 .ph .ph-face .ic { font-size: 2.4rem; display: block; opacity: .5; filter: grayscale(.3); }
-.ph .ph-face .yr { font-family: var(--font-serif); font-weight: 600; color: var(--text-dim); margin-top: 8px; letter-spacing: .06em; }
+.ph .ph-face .yr { font-family: var(--font-sans); font-weight: 600; color: var(--text-dim); margin-top: 8px; letter-spacing: .06em; }
 .tl-card .ph { border-radius: var(--radius-sm); min-height: 84px; margin-bottom: 8px; border-right: none; }
 .tl-card .ph .ph-face .ic { font-size: 1.5rem; }
 

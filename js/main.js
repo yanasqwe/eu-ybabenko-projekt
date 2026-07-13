@@ -8,7 +8,7 @@
    - Kontaktformular
    ============================================================ */
 
-/* ⚙️  KONFIGURATION — hier deine Formspree-ID eintragen (siehe README).
+/* KONFIGURATION — hier deine Formspree-ID eintragen (siehe README).
    Solange "DEIN_FORMSPREE_ID" steht, öffnet das Formular als Fallback
    das E-Mail-Programm (mailto). */
 const FORMSPREE_ID = "mpqgevwr";
@@ -221,11 +221,11 @@ function animateChart() {
    ZEITSTRAHL (gebogene Kurve mit Knoten)
    ============================================================ */
 const EVENTS = [
-  { y: "1951", k: "1951", ic: "⚒️" }, { y: "1957", k: "1957", ic: "📜" },
-  { y: "1979", k: "1979", ic: "🗳️" }, { y: "1985", k: "1985", ic: "🛂" },
-  { y: "1993", k: "1993", ic: "🇪🇺" }, { y: "2002", k: "2002", ic: "💶" },
-  { y: "2004", k: "2004", ic: "🤝" }, { y: "2012", k: "2012", ic: "🕊️" },
-  { y: "2020", k: "2020", ic: "👋" },
+  { y: "1951", k: "1951" }, { y: "1957", k: "1957" },
+  { y: "1979", k: "1979" }, { y: "1985", k: "1985" },
+  { y: "1993", k: "1993" }, { y: "2002", k: "2002" },
+  { y: "2004", k: "2004" }, { y: "2012", k: "2012" },
+  { y: "2020", k: "2020" },
 ];
 
 function buildTimeline() {
@@ -250,7 +250,7 @@ function buildTimeline() {
         <a class="tl-card" href="#event-${ev.y}">
           <figure class="ph" style="--c1:#16305f;--c2:#0a1a3a">
             <img src="assets/images/${ev.y}.jpg" alt="${ev.y}" loading="lazy" onerror="this.remove()">
-            <span class="ph-face"><span class="ic">${ev.ic}</span></span>
+            <span class="ph-face"></span>
           </figure>
           <div class="yr">${ev.y}</div>
           <div class="tt" data-i18n="ev.${ev.k}.t"></div>

@@ -278,7 +278,7 @@ const I18N_DICT = {
   "contact.msgP":   { de: "Schreib hier deine Frage zur EU …", en: "Write your question about the EU here …", ru: "Напиши здесь свой вопрос о ЕС …", zh: "在此写下你关于欧盟的问题……" },
   "contact.send":   { de: "Nachricht senden", en: "Send message", ru: "Отправить сообщение", zh: "发送留言" },
   "contact.note":   { de: "Deine Angaben werden nur zur Beantwortung deiner Frage genutzt.", en: "Your data is only used to answer your question.", ru: "Твои данные используются только для ответа на вопрос.", zh: "你的信息仅用于回答你的问题。" },
-  "contact.ok":     { de: "Danke! Deine Nachricht wurde gesendet. ✔", en: "Thank you! Your message has been sent. ✔", ru: "Спасибо! Твоё сообщение отправлено. ✔", zh: "谢谢！你的留言已发送。✔" },
+  "contact.ok":     { de: "Danke! Deine Nachricht wurde gesendet.", en: "Thank you! Your message has been sent.", ru: "Спасибо! Твоё сообщение отправлено.", zh: "谢谢！你的留言已发送。" },
   "contact.err":    { de: "Etwas ist schiefgelaufen. Bitte versuche es erneut.", en: "Something went wrong. Please try again.", ru: "Что-то пошло не так. Попробуй ещё раз.", zh: "出错了，请重试。" },
   "contact.iEmailT":{ de: "E-Mail", en: "Email", ru: "E-mail", zh: "电子邮件" },
   "contact.iAnsT":  { de: "Antwortzeit", en: "Response time", ru: "Время ответа", zh: "回复时间" },
