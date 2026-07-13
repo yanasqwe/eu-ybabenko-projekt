@@ -53,6 +53,9 @@ const I18N_DICT = {
   "cta.explore":  { de: "Geschichte entdecken", en: "Explore history", ru: "Изучить историю", zh: "探索历史" },
   "cta.contact":  { de: "Frage stellen",        en: "Ask a question",  ru: "Задать вопрос",   zh: "提问" },
 
+  "search.ph":    { de: "Schlüsselwort", en: "Keyword", ru: "Ключевое слово", zh: "关键词" },
+  "search.none":  { de: "Keine Treffer", en: "No results", ru: "Ничего не найдено", zh: "无结果" },
+
   /* ---------- Footer ---------- */
   "footer.tagline": {
     de: "Ein Schulprojekt über die Europäische Union — ihre Geschichte, ihre Länder und ihr Einfluss auf die Welt.",

@@ -66,6 +66,13 @@ function buildHeader(current) {
       </a>
       <nav class="nav-links" id="navLinks">${links}</nav>
       <div style="display:flex; align-items:center; gap:12px;">
+        <div class="search" id="searchWrap">
+          <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+          </svg>
+          <input type="search" id="siteSearch" data-i18n-ph="search.ph" autocomplete="off" aria-label="Suche">
+          <div class="search-results" id="searchResults" role="listbox"></div>
+        </div>
         <div class="lang" id="langWrap">
           <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
             <span class="cur-flag">🇩🇪</span>
@@ -356,6 +363,107 @@ function initContactForm() {
 }
 
 /* ============================================================
+   SUCHE — durchsucht den gesamten Seiteninhalt (i18n-Wörterbuch)
+   in der aktuellen Sprache und verlinkt zur passenden Seite.
+   ============================================================ */
+
+/* Ordnet jeden Übersetzungs-Schlüssel einer Zielseite zu.
+   Chrome-Schlüssel (Navigation, Footer, Quellen …) werden übersprungen. */
+function searchTargetForKey(key) {
+  if (/^(home|fact|chart)\./.test(key)) return { page: "index.html",        cat: "nav.home" };
+  if (/^(chrono|ev|hd)\./.test(key)) {
+    const y = key.match(/(\d{4})/);
+    return { page: "chronologie.html", cat: "nav.chrono", anchor: y ? "#event-" + y[1] : "" };
+  }
+  if (/^inf\./.test(key))     return { page: "einfluss.html",   cat: "nav.influence" };
+  if (/^contact\./.test(key)) return { page: "kontakt.html",    cat: "nav.contact" };
+  if (/^agb\./.test(key))     return { page: "agb.html",        cat: "agb.title" };
+  if (/^dsg\./.test(key))     return { page: "datenschutz.html",cat: "dsg.title" };
+  if (/^imp\./.test(key))     return { page: "impressum.html",  cat: "imp.title" };
+  return null; // nav./footer./src./cta./legal./search. → nicht durchsuchbar
+}
+
+function escapeHTML(s) {
+  return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+/* Textausschnitt rund um den Treffer, mit hervorgehobenem Suchwort */
+function searchSnippet(text, pos, len) {
+  const ctx = 48;
+  const start = Math.max(0, pos - ctx);
+  const end = Math.min(text.length, pos + len + ctx);
+  const pre = start > 0 ? "… " : "";
+  const post = end < text.length ? " …" : "";
+  const before = escapeHTML(text.slice(start, pos));
+  const hit = escapeHTML(text.slice(pos, pos + len));
+  const after = escapeHTML(text.slice(pos + len, end));
+  return pre + before + "<mark>" + hit + "</mark>" + after + post;
+}
+
+function runSearch(rawQuery) {
+  const lang = I18N.get();
+  const q = rawQuery.trim().toLowerCase();
+  if (q.length < 2) return [];
+  // Pro Ziel (Seite + Anker) nur ein Treffer — der längste (informativste) Ausschnitt.
+  const byDest = new Map();
+  for (const key in I18N.dict) {
+    const target = searchTargetForKey(key);
+    if (!target) continue;
+    const text = I18N.t(key, lang).replace(/<[^>]+>/g, ""); // evtl. HTML entfernen
+    const pos = text.toLowerCase().indexOf(q);
+    if (pos === -1) continue;
+    const dest = target.page + (target.anchor || "");
+    const prev = byDest.get(dest);
+    if (!prev || text.length > prev.text.length) {
+      byDest.set(dest, { text, pos, len: q.length, ...target });
+    }
+  }
+  return Array.from(byDest.values()).slice(0, 8);
+}
+
+function renderSearchResults(results, box) {
+  const lang = I18N.get();
+  if (!results.length) {
+    box.innerHTML = `<div class="search-empty">${I18N.t("search.none", lang)}</div>`;
+    box.classList.add("open");
+    return;
+  }
+  box.innerHTML = results.map((r, i) => {
+    const href = r.page + (r.anchor || "");
+    return `<a href="${href}" role="option" class="${i === 0 ? "active" : ""}">
+      <span class="cat">${escapeHTML(I18N.t(r.cat, lang))}</span>
+      <span class="snip">${searchSnippet(r.text, r.pos, r.len)}</span>
+    </a>`;
+  }).join("");
+  box.classList.add("open");
+}
+
+function initSearch() {
+  const input = document.getElementById("siteSearch");
+  const box = document.getElementById("searchResults");
+  if (!input || !box) return;
+
+  const update = () => {
+    if (input.value.trim().length < 2) { box.classList.remove("open"); box.innerHTML = ""; return; }
+    renderSearchResults(runSearch(input.value), box);
+  };
+  input.addEventListener("input", update);
+  input.addEventListener("focus", update);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const first = box.querySelector("a");
+      if (first) window.location.href = first.getAttribute("href");
+    } else if (e.key === "Escape") {
+      box.classList.remove("open"); input.blur();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("#searchWrap")) box.classList.remove("open");
+  });
+}
+
+/* ============================================================
    INIT
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -401,8 +509,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  // Animationen & Formular
+  // Animationen, Suche & Formular
   initReveal();
   animateChart();
+  initSearch();
   initContactForm();
 });
