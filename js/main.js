@@ -16,6 +16,32 @@ const CONTACT_MAIL = "babenko.yana2206@gmail.com";
 
 const I18N = window.EU_I18N;
 
+/* ============================================================
+   THEMA (hell / dunkel) — dunkel ist Standard
+   ============================================================ */
+function currentTheme() { return localStorage.getItem("eu_theme") || "dark"; }
+document.documentElement.dataset.theme = currentTheme(); // früh setzen → kein Flackern
+
+const THEME_ICONS = {
+  // aktives Thema dunkel → Sonne zeigen (Klick schaltet auf hell) und umgekehrt
+  dark:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`,
+  light: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`,
+};
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("eu_theme", theme);
+  const btn = document.getElementById("themeToggle");
+  if (btn) btn.innerHTML = THEME_ICONS[theme];
+}
+
+function initTheme() {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  btn.addEventListener("click", () =>
+    applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+}
+
 /* ---------- Hilfsfunktion: EU-Sternenkreis als SVG ---------- */
 function starsSVG(cx, cy, r, fontSize, cls) {
   let s = "";
@@ -73,6 +99,7 @@ function buildHeader(current) {
           <input type="search" id="siteSearch" data-i18n-ph="search.ph" autocomplete="off" aria-label="Suche">
           <div class="search-results" id="searchResults" role="listbox"></div>
         </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Thema wechseln" title="Thema wechseln">${THEME_ICONS[currentTheme()]}</button>
         <div class="lang" id="langWrap">
           <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
             <span class="cur-flag">🇩🇪</span>
@@ -533,7 +560,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  // Animationen, Suche & Formular
+  // Thema, Animationen, Suche & Formular
+  initTheme();
   initReveal();
   animateChart();
   initSearch();
