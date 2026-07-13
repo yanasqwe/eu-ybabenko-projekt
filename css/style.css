@@ -411,7 +411,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 /* ============================================================
    ARTICLE / CMS PAGE
    ============================================================ */
-.article { max-width: 720px; margin-inline: auto; }
+.article { max-width: 900px; margin-inline: 0; } /* linksbündig zur Überschrift */
 .article > * + * { margin-top: 20px; }
 .article h2 { font-size: 1.6rem; margin-top: 46px; font-weight: 600; }
 .article h2:first-of-type { margin-top: 0; }
@@ -460,7 +460,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 /* ============================================================
    LEGAL PAGES
    ============================================================ */
-.legal { max-width: 720px; margin-inline: auto; }
+.legal { max-width: 900px; margin-inline: 0; } /* linksbündig zur Überschrift */
 .legal h2 { font-size: 1.25rem; margin-top: 34px; font-weight: 600; }
 .legal h2:first-of-type { margin-top: 0; }
 .legal .note-box + h2 { margin-top: 28px; }
