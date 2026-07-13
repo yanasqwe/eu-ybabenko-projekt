@@ -367,24 +367,33 @@ function initContactForm() {
    in der aktuellen Sprache und verlinkt zur passenden Seite.
    ============================================================ */
 
-/* Ordnet jeden Übersetzungs-Schlüssel einer Zielseite zu.
-   Chrome-Schlüssel (Navigation, Footer, Quellen …) werden übersprungen. */
+/* Präfix des Schlüssels (z. B. "home", "ev", "inf") → Zielseite. */
+const SEARCH_PAGE = {
+  home: "index.html", fact: "index.html", chart: "index.html",
+  chrono: "chronologie.html", ev: "chronologie.html", hd: "chronologie.html",
+  inf: "einfluss.html", contact: "kontakt.html",
+  agb: "agb.html", dsg: "datenschutz.html", imp: "impressum.html",
+};
+/* Zielseite → Rubrik-Beschriftung (i18n-Schlüssel) im Suchergebnis. */
+const SEARCH_CAT = {
+  "index.html": "nav.home", "chronologie.html": "nav.chrono",
+  "einfluss.html": "nav.influence", "kontakt.html": "nav.contact",
+  "agb.html": "agb.title", "datenschutz.html": "dsg.title", "impressum.html": "imp.title",
+};
+
+/* Baut aus einem Übersetzungs-Schlüssel das Sprungziel (Link + Rubrik).
+   Schlüssel ohne durchsuchbare Seite (Navigation, Footer …) → null. */
 function searchTargetForKey(key) {
-  if (/^(home|fact|chart)\./.test(key)) return { page: "index.html",        cat: "nav.home" };
-  if (/^(chrono|ev|hd)\./.test(key)) {
-    const y = key.match(/(\d{4})/);
-    return { page: "chronologie.html", cat: "nav.chrono", anchor: y ? "#event-" + y[1] : "" };
-  }
-  if (/^inf\./.test(key))     return { page: "einfluss.html",   cat: "nav.influence" };
-  if (/^contact\./.test(key)) return { page: "kontakt.html",    cat: "nav.contact" };
-  if (/^agb\./.test(key))     return { page: "agb.html",        cat: "agb.title" };
-  if (/^dsg\./.test(key))     return { page: "datenschutz.html",cat: "dsg.title" };
-  if (/^imp\./.test(key))     return { page: "impressum.html",  cat: "imp.title" };
-  return null; // nav./footer./src./cta./legal./search. → nicht durchsuchbar
+  const page = SEARCH_PAGE[key.split(".")[0]];
+  if (!page) return null;
+  const year = key.match(/\d{4}/); // nur Chronologie-Schlüssel enthalten ein Jahr
+  const anchor = page === "chronologie.html" && year ? "#event-" + year[0] : "";
+  return { href: page + anchor, cat: SEARCH_CAT[page] };
 }
 
+const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 function escapeHTML(s) {
-  return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  return s.replace(/[&<>"]/g, c => HTML_ESCAPES[c]);
 }
 
 /* Textausschnitt rund um den Treffer, mit hervorgehobenem Suchwort */
@@ -412,10 +421,9 @@ function runSearch(rawQuery) {
     const text = I18N.t(key, lang).replace(/<[^>]+>/g, ""); // evtl. HTML entfernen
     const pos = text.toLowerCase().indexOf(q);
     if (pos === -1) continue;
-    const dest = target.page + (target.anchor || "");
-    const prev = byDest.get(dest);
+    const prev = byDest.get(target.href);
     if (!prev || text.length > prev.text.length) {
-      byDest.set(dest, { text, pos, len: q.length, ...target });
+      byDest.set(target.href, { text, pos, len: q.length, ...target });
     }
   }
   return Array.from(byDest.values()).slice(0, 8);
@@ -428,13 +436,11 @@ function renderSearchResults(results, box) {
     box.classList.add("open");
     return;
   }
-  box.innerHTML = results.map((r, i) => {
-    const href = r.page + (r.anchor || "");
-    return `<a href="${href}" role="option" class="${i === 0 ? "active" : ""}">
+  box.innerHTML = results.map((r, i) =>
+    `<a href="${r.href}" role="option" class="${i === 0 ? "active" : ""}">
       <span class="cat">${escapeHTML(I18N.t(r.cat, lang))}</span>
       <span class="snip">${searchSnippet(r.text, r.pos, r.len)}</span>
-    </a>`;
-  }).join("");
+    </a>`).join("");
   box.classList.add("open");
 }
 

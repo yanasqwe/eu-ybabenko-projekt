@@ -1,0 +1,6 @@
+# IDE (JetBrains)
+.idea/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
