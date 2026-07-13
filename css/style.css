@@ -257,6 +257,9 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .btn-ghost:hover { background: var(--surface); }
 .btn-gold { background: var(--gold); color: #2a1f00; }
 .btn-gold:hover { background: #e8ba45; transform: translateY(-1px); }
+/* Helles Thema: Gold ist dunkler → weiße Schrift bleibt lesbar (auch beim Hover) */
+:root[data-theme="light"] .btn-gold { color: #fff; }
+:root[data-theme="light"] .btn-gold:hover { background: #765409; }
 
 /* EU-Flagge (statisch, echt) */
 .flag-figure { max-width: 420px; margin-inline: auto; }
@@ -494,10 +497,6 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .source-link .s-ic svg { width: 19px; height: 19px; }
 .source-link b { display: block; color: var(--text); font-size: 0.9rem; font-weight: 500; }
 .source-link small { color: var(--text-dim); font-size: 0.8rem; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--border);
-  color: var(--text-dim); font-size: 0.84rem; flex-wrap: wrap; }
-.footer-bottom .mini-stars { color: var(--gold); letter-spacing: .25em; opacity: .7; }
 
 /* ============================================================
    BACK TO TOP

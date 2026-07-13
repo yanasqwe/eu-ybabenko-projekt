@@ -157,10 +157,6 @@ function buildFooter() {
           <a href="impressum.html" data-i18n="footer.imprint"></a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2025 · <span data-i18n="footer.rights"></span></span>
-        <span class="mini-stars">★ ★ ★</span>
-      </div>
     </div>
   </footer>`;
 }
