@@ -233,8 +233,6 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   transition: background .2s var(--ease);
 }
 .stat-card:hover { background: var(--surface-2); }
-.stat-card .ico { color: var(--text-dim); margin-bottom: 18px; }
-.stat-card .ico svg { width: 24px; height: 24px; }
 .stat-card .num { font-family: var(--font-sans); font-size: clamp(2rem, 3.4vw, 2.7rem);
   font-weight: 700; letter-spacing: -0.02em; color: var(--text); font-variant-numeric: tabular-nums; }
 .stat-card .num.gold { color: var(--gold); }
