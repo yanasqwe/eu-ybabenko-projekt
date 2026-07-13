@@ -512,8 +512,11 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   .nav-links.open { transform: translateY(0); }
   .nav-links a { width: 100%; padding: 12px 14px; }
   .burger { display: flex; }
-  .search input { width: 128px; max-width: 34vw; }
-  .search input:focus { width: 150px; }
+  /* Suche wird per JS ins Burger-Menü verschoben → volle Breite */
+  .nav-links .search { width: 100%; margin-bottom: 6px; }
+  .nav-links .search input,
+  .nav-links .search input:focus { width: 100%; max-width: none; }
+  .nav-links .search-results { width: 100%; }
   .chart-row { grid-template-columns: 122px 1fr 58px; gap: 10px; }
   .chart-row .cn { font-size: 0.8rem; }
   .chart { padding: 18px; }

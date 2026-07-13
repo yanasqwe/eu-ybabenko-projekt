@@ -65,7 +65,7 @@ function buildHeader(current) {
         <span class="logo-text"><b>Europa</b><span>Union</span></span>
       </a>
       <nav class="nav-links" id="navLinks">${links}</nav>
-      <div style="display:flex; align-items:center; gap:12px;">
+      <div class="header-tools" id="headerTools" style="display:flex; align-items:center; gap:12px;">
         <div class="search" id="searchWrap">
           <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
@@ -438,10 +438,28 @@ function renderSearchResults(results, box) {
   box.classList.add("open");
 }
 
+/* Auf schmalen Bildschirmen wandert das Suchfeld ins Burger-Menü,
+   auf breiten zurück in die Kopfzeile (rechts, vor die Sprachauswahl). */
+function placeSearch() {
+  const wrap = document.getElementById("searchWrap");
+  const nav = document.getElementById("navLinks");
+  const tools = document.getElementById("headerTools");
+  if (!wrap || !nav || !tools) return;
+  const mobile = window.matchMedia("(max-width: 720px)").matches;
+  if (mobile) {
+    if (wrap.parentElement !== nav) nav.insertBefore(wrap, nav.firstChild);
+  } else if (wrap.parentElement !== tools) {
+    tools.insertBefore(wrap, tools.firstChild);
+  }
+}
+
 function initSearch() {
   const input = document.getElementById("siteSearch");
   const box = document.getElementById("searchResults");
   if (!input || !box) return;
+
+  placeSearch();
+  window.addEventListener("resize", placeSearch);
 
   const update = () => {
     if (input.value.trim().length < 2) { box.classList.remove("open"); box.innerHTML = ""; return; }
