@@ -218,9 +218,6 @@ const I18N_DICT = {
     zh: "在2016年公投之后，英国于2020年初退出欧盟，成为有史以来首个退出的国家。“英国脱欧”表明成员资格并非理所当然，但也让许多人重新认识到联盟的益处。",
   },
 
-  /* ============================================================
-     EU & WELT (CMS)
-     ============================================================ */
   "inf.title":  { de: "Der Einfluss der EU auf die Welt", en: "The EU's influence on the world", ru: "Влияние ЕС на мир", zh: "欧盟对世界的影响" },
   "inf.titleGrad": { de: "auf die Welt", en: "on the world", ru: "на мир", zh: "对世界" },
   "inf.lead": {

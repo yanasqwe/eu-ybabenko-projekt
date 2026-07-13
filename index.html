@@ -10,7 +10,6 @@
 </head>
 <body data-page="home">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="reveal">
@@ -31,7 +30,6 @@
     </div>
   </section>
 
-  <!-- FAKTEN -->
   <section id="fakten">
     <div class="container">
       <div class="section-head reveal">
@@ -67,7 +65,6 @@
     </div>
   </section>
 
-  <!-- BEVÖLKERUNGSDIAGRAMM -->
   <section id="bevoelkerung">
     <div class="container">
       <div class="section-head reveal">
@@ -88,12 +85,11 @@
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script>
-    /* Echte EU-Flagge zeichnen: blaues Feld, 12 goldene Sterne im Kreis */
     (function () {
       const svg = document.getElementById("euFlag");
       if (!svg) return;
       let stars = "";
-      const cx = 45, cy = 30, r = 18; // Sternenkreis mittig
+      const cx = 45, cy = 30, r = 18;
       for (let i = 0; i < 12; i++) {
         const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
         const x = (cx + r * Math.cos(a)).toFixed(2);
