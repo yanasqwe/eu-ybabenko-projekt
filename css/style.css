@@ -313,7 +313,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
           mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 /* relative im Fluss → reserviert Platz; breiter als der Bildschirm → immer etwas zum Durchlaufen */
-.timeline { position: relative; width: max(2200px, 150vw); height: 520px; }
+.timeline { position: relative; width: max(2200px, 120vw); height: 520px; }
 .timeline.running {
   animation: tl-pan var(--tl-dur, 26s) ease-in-out infinite,
              tl-fade var(--tl-dur, 26s) ease-in-out infinite;
