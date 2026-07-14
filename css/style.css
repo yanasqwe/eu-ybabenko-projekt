@@ -308,8 +308,8 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
           mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 /* im normalen Fluss (relative) → reserviert Platz und kann die Blöcke darunter nie überlappen */
-/* immer breiter als der Bildschirm → auf großen Monitoren bleibt etwas zum Durchlaufen */
-.timeline { position: relative; width: max(2200px, calc(100vw + 300px)); height: 520px; }
+/* deutlich breiter als der Bildschirm → auch auf großen Monitoren eine lange, sichtbare Fahrt */
+.timeline { position: relative; width: max(2200px, 150vw); height: 520px; }
 .timeline.running {
   animation: tl-pan var(--tl-dur, 26s) ease-in-out infinite,
              tl-fade var(--tl-dur, 26s) ease-in-out infinite;
@@ -391,7 +391,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .tl-card .ph { border-radius: var(--radius-sm); min-height: 84px; margin-bottom: 8px; border-right: none; }
 
 /* ARTICLE / CMS PAGE */
-.article { max-width: 720px; margin-inline: auto; }
+.article { max-width: none; }
 .article > * + * { margin-top: 20px; }
 .article h2 { font-size: 1.6rem; margin-top: 46px; font-weight: 600; }
 .article h2:first-of-type { margin-top: 0; }
