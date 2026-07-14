@@ -83,6 +83,10 @@ body {
 
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
+
+/* Länder-/Sprachflaggen als lokale SVGs → auf allen Systemen sichtbar (Windows kennt keine Flaggen-Emojis) */
+.flag, .cur-flag { object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--border); flex-shrink: 0; }
+.cur-flag { width: 22px; height: 15px; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 ul { list-style: none; }
 
@@ -174,7 +178,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .lang-menu button:hover { background: var(--overlay); color: var(--text); }
 .lang-menu button.active { color: var(--text); font-weight: 600; }
 .lang-menu button.active::after { content: "✓"; margin-left: auto; color: var(--gold); }
-.lang-menu .flag { font-size: 1.1rem; }
+.lang-menu .flag { width: 22px; height: 15px; }
 
 /* Thema-Umschalter */
 .theme-toggle {
@@ -282,7 +286,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 }
 .chart-row:hover { background: var(--blue-tint); }
 .chart-row .cn { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 0.92rem; }
-.chart-row .cn .flag { font-size: 1.15rem; }
+.chart-row .cn .flag { width: 24px; height: 16px; }
 .chart-track { height: 18px; background: var(--overlay); border-radius: 3px; overflow: hidden; }
 .chart-bar {
   height: 100%; width: 0; border-radius: 3px; background: var(--blue-dim);
@@ -304,7 +308,8 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
           mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 /* im normalen Fluss (relative) → reserviert Platz und kann die Blöcke darunter nie überlappen */
-.timeline { position: relative; width: 2200px; height: 520px; }
+/* immer breiter als der Bildschirm → auf großen Monitoren bleibt etwas zum Durchlaufen */
+.timeline { position: relative; width: max(2200px, calc(100vw + 300px)); height: 520px; }
 .timeline.running {
   animation: tl-pan var(--tl-dur, 26s) ease-in-out infinite,
              tl-fade var(--tl-dur, 26s) ease-in-out infinite;

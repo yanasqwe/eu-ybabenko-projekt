@@ -80,7 +80,7 @@ function buildHeader(current) {
   ).join("");
 
   const langBtns = Object.entries(I18N.langs).map(([code, o]) =>
-    `<button data-lang="${code}"><span class="flag">${o.flag}</span> ${o.name}</button>`
+    `<button data-lang="${code}"><img class="flag" src="assets/flags/${o.cc}.svg" alt=""> ${o.name}</button>`
   ).join("");
 
   return `
@@ -102,7 +102,7 @@ function buildHeader(current) {
         <button class="theme-toggle" id="themeToggle" aria-label="Thema wechseln" title="Thema wechseln">${THEME_ICONS[currentTheme()]}</button>
         <div class="lang" id="langWrap">
           <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
-            <span class="cur-flag">🇩🇪</span>
+            <img class="cur-flag" src="assets/flags/de.svg" alt="">
             <span class="cur-name">Deutsch</span>
             <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
@@ -190,7 +190,7 @@ function applyLang(lang) {
   const cur = I18N.langs[lang];
   const cf = document.querySelector(".cur-flag");
   const cn = document.querySelector(".cur-name");
-  if (cf) cf.textContent = cur.flag;
+  if (cf) cf.src = "assets/flags/" + cur.cc + ".svg";
   if (cn) cn.textContent = cur.name;
   document.querySelectorAll(".lang-menu button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === lang));
@@ -219,11 +219,11 @@ function buildChart() {
   const mount = document.getElementById("chart-mount");
   if (!mount) return;
   const max = POP[0][1];
-  const rows = POP.map(([code, val, flag]) => {
+  const rows = POP.map(([code, val]) => {
     const pct = (val / max) * 100;
     return `
       <div class="chart-row">
-        <span class="cn"><span class="flag">${flag}</span><span data-country="${code}"></span></span>
+        <span class="cn"><img class="flag" src="assets/flags/${code.toLowerCase()}.svg" alt="" loading="lazy"><span data-country="${code}"></span></span>
         <div class="chart-track"><div class="chart-bar" data-w="${pct}"></div></div>
         <span class="chart-val">${val.toFixed(1)}</span>
       </div>`;

@@ -6,10 +6,10 @@
    ============================================================ */
 
 const LANGS = {
-  de: { flag: "🇩🇪", name: "Deutsch" },
-  en: { flag: "🇬🇧", name: "English" },
-  ru: { flag: "🇷🇺", name: "Русский" },
-  zh: { flag: "🇨🇳", name: "中文" },
+  de: { cc: "de", name: "Deutsch" },
+  en: { cc: "gb", name: "English" },
+  ru: { cc: "ru", name: "Русский" },
+  zh: { cc: "cn", name: "中文" },
 };
 
 /* Ländernamen für das Bevölkerungsdiagramm */
