@@ -84,7 +84,7 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* Länder-/Sprachflaggen als lokale SVGs → auf allen Systemen sichtbar (Windows kennt keine Flaggen-Emojis) */
+/* Flaggen als lokale SVGs (Windows zeigt keine Flaggen-Emojis) */
 .flag, .cur-flag { object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--border); flex-shrink: 0; }
 .cur-flag { width: 22px; height: 15px; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
@@ -137,6 +137,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   border-bottom: 1px solid var(--border);
 }
 .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.header-tools { display: flex; align-items: center; gap: 12px; }
 
 /* Logo */
 .logo { display: flex; align-items: center; gap: 12px; }
@@ -277,9 +278,10 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--gold);
   border-radius: var(--radius-sm); padding: 20px 22px;
 }
-.note-box .ico { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+/* Höhe = Zeilenhöhe des Textes (0.95rem × 1.7) → Icon sitzt mittig auf der ersten Textzeile */
+.note-box .ico { display: flex; align-items: center; height: calc(0.95rem * 1.7); color: var(--gold); flex-shrink: 0; }
 .note-box .ico svg { width: 20px; height: 20px; }
-.note-box p { color: var(--text-muted); font-size: 0.95rem; }
+.note-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
 
 /* POPULATION CHART */
 .chart { padding: 30px; }
@@ -310,8 +312,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
-/* im normalen Fluss (relative) → reserviert Platz und kann die Blöcke darunter nie überlappen */
-/* deutlich breiter als der Bildschirm → auch auf großen Monitoren eine lange, sichtbare Fahrt */
+/* relative im Fluss → reserviert Platz; breiter als der Bildschirm → immer etwas zum Durchlaufen */
 .timeline { position: relative; width: max(2200px, 150vw); height: 520px; }
 .timeline.running {
   animation: tl-pan var(--tl-dur, 26s) ease-in-out infinite,
@@ -491,7 +492,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
-  /* Zeitstrahl bewusst weiterlaufen lassen (ausdrücklicher Wunsch) */
+  /* Zeitstrahl weiterhin animieren */
   .timeline.running {
     animation: tl-pan var(--tl-dur, 26s) ease-in-out infinite,
                tl-fade var(--tl-dur, 26s) ease-in-out infinite !important;

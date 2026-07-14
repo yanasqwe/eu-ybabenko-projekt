@@ -1,24 +1,13 @@
-/* ============================================================
-   main.js — zentrale Logik der EU-Website
-   - Header & Footer werden per JS eingefügt (keine Duplikate)
-   - Sprachumschaltung (DE/EN/RU/ZH)
-   - Zurück-nach-oben-Button
-   - Scroll-Reveal-Animationen
-   - Bevölkerungsdiagramm & Zeitstrahl
-   - Kontaktformular
-   ============================================================ */
+/* Kopf-/Fußzeile, Sprachwechsel, Diagramm, Zeitstrahl, Suche und Kontaktformular. */
 
-/* KONFIGURATION — hier deine Formspree-ID eintragen (siehe README).
-   Solange "DEIN_FORMSPREE_ID" steht, öffnet das Formular als Fallback
-   das E-Mail-Programm (mailto). */
+/* Formspree-ID eintragen. Solange "DEIN_FORMSPREE_ID" steht, öffnet das
+   Formular als Fallback das E-Mail-Programm (mailto). */
 const FORMSPREE_ID = "mpqgevwr";
 const CONTACT_MAIL = "babenko.yana2206@gmail.com";
 
 const I18N = window.EU_I18N;
 
-/* ============================================================
-   THEMA (hell / dunkel) — hell ist Standard
-   ============================================================ */
+/* Thema (hell / dunkel) — hell ist Standard */
 function currentTheme() { return localStorage.getItem("eu_theme") || "light"; }
 document.documentElement.dataset.theme = currentTheme(); // früh setzen → kein Flackern
 
@@ -42,7 +31,7 @@ function initTheme() {
     applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 }
 
-/* ---------- Hilfsfunktion: EU-Sternenkreis als SVG ---------- */
+/* EU-Sternenkreis als SVG */
 function starsSVG(cx, cy, r, fontSize, cls) {
   let s = "";
   for (let i = 0; i < 12; i++) {
@@ -55,7 +44,7 @@ function starsSVG(cx, cy, r, fontSize, cls) {
   return s;
 }
 
-/* ---------- Logo ---------- */
+/* Logo */
 function logoSVG() {
   return `<svg viewBox="0 0 100 100" role="img" aria-label="EU Logo">
     <circle cx="50" cy="50" r="48" fill="#003399"/>
@@ -64,9 +53,7 @@ function logoSVG() {
   </svg>`;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
+/* Header */
 const NAV = [
   { key: "nav.home",      href: "index.html",        page: "home" },
   { key: "nav.chrono",    href: "chronologie.html",  page: "chrono" },
@@ -91,7 +78,7 @@ function buildHeader(current) {
         <span class="logo-text"><b>Europa</b><span>Union</span></span>
       </a>
       <nav class="nav-links" id="navLinks">${links}</nav>
-      <div class="header-tools" id="headerTools" style="display:flex; align-items:center; gap:12px;">
+      <div class="header-tools" id="headerTools">
         <div class="search" id="searchWrap">
           <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
@@ -115,9 +102,7 @@ function buildHeader(current) {
   </header>`;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* Footer */
 function sourceIcon(kind) {
   if (kind === "eu") return `<svg viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>`;
   if (kind === "ep") return `<svg viewBox="0 0 24 24" fill="none" stroke="#4d7cff" stroke-width="1.8"><path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M12 3l8 5H4l8-5z"/></svg>`;
@@ -161,7 +146,7 @@ function buildFooter() {
   </footer>`;
 }
 
-/* ---------- Back to top ---------- */
+/* Zurück nach oben */
 const TO_TOP = `
   <button class="to-top" id="toTop" aria-label="Nach oben">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -169,9 +154,7 @@ const TO_TOP = `
     </svg>
   </button>`;
 
-/* ============================================================
-   ÜBERSETZUNG ANWENDEN
-   ============================================================ */
+/* Übersetzung anwenden */
 function applyLang(lang) {
   document.documentElement.lang = lang;
   I18N.set(lang);
@@ -202,17 +185,15 @@ function applyLang(lang) {
   });
 }
 
-/* ============================================================
-   BEVÖLKERUNGSDIAGRAMM
-   ============================================================ */
+/* Bevölkerung in Mio. (Eurostat, gerundet), absteigend sortiert */
 const POP = [
-  ["DE", 83.5, "🇩🇪"], ["FR", 68.2, "🇫🇷"], ["IT", 58.9, "🇮🇹"], ["ES", 48.6, "🇪🇸"],
-  ["PL", 36.7, "🇵🇱"], ["RO", 19.0, "🇷🇴"], ["NL", 17.9, "🇳🇱"], ["BE", 11.7, "🇧🇪"],
-  ["CZ", 10.9, "🇨🇿"], ["SE", 10.5, "🇸🇪"], ["PT", 10.5, "🇵🇹"], ["GR", 10.4, "🇬🇷"],
-  ["HU", 9.6, "🇭🇺"], ["AT", 9.1, "🇦🇹"], ["BG", 6.4, "🇧🇬"], ["DK", 5.9, "🇩🇰"],
-  ["FI", 5.6, "🇫🇮"], ["SK", 5.4, "🇸🇰"], ["IE", 5.3, "🇮🇪"], ["HR", 3.9, "🇭🇷"],
-  ["LT", 2.9, "🇱🇹"], ["SI", 2.1, "🇸🇮"], ["LV", 1.9, "🇱🇻"], ["EE", 1.4, "🇪🇪"],
-  ["CY", 0.9, "🇨🇾"], ["LU", 0.7, "🇱🇺"], ["MT", 0.5, "🇲🇹"],
+  ["DE", 83.5], ["FR", 68.2], ["IT", 58.9], ["ES", 48.6],
+  ["PL", 36.7], ["RO", 19.0], ["NL", 17.9], ["BE", 11.7],
+  ["CZ", 10.9], ["SE", 10.5], ["PT", 10.5], ["GR", 10.4],
+  ["HU", 9.6], ["AT", 9.1], ["BG", 6.4], ["DK", 5.9],
+  ["FI", 5.6], ["SK", 5.4], ["IE", 5.3], ["HR", 3.9],
+  ["LT", 2.9], ["SI", 2.1], ["LV", 1.9], ["EE", 1.4],
+  ["CY", 0.9], ["LU", 0.7], ["MT", 0.5],
 ];
 
 function buildChart() {
@@ -247,9 +228,7 @@ function animateChart() {
   io.observe(mount);
 }
 
-/* ============================================================
-   ZEITSTRAHL (gebogene Kurve mit Knoten)
-   ============================================================ */
+/* Zeitstrahl (gebogene Kurve mit Knoten) */
 const EVENTS = [
   { y: "1951", k: "1951" }, { y: "1957", k: "1957" },
   { y: "1979", k: "1979" }, { y: "1985", k: "1985" },
@@ -307,7 +286,6 @@ function buildTimeline() {
     // Tempo konstant halten (längere Strecke → längere Dauer)
     const dur = Math.max(20, Math.min(46, Math.round(pan / 55) + 14));
     track.style.setProperty("--tl-dur", dur + "s");
-    // läuft unabhängig von „reduce motion“ (bewusste Design-Entscheidung, siehe CSS)
     track.classList.toggle("running", pan > 30);
   }
   setup();
@@ -328,9 +306,7 @@ function buildTimeline() {
   });
 }
 
-/* ============================================================
-   SCROLL-REVEAL
-   ============================================================ */
+/* Scroll-Reveal */
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries, obs) => {
@@ -341,9 +317,7 @@ function initReveal() {
   els.forEach(el => io.observe(el));
 }
 
-/* ============================================================
-   KONTAKTFORMULAR
-   ============================================================ */
+/* Kontaktformular */
 function initContactForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
@@ -385,10 +359,8 @@ function initContactForm() {
   });
 }
 
-/* ============================================================
-   SUCHE — durchsucht den gesamten Seiteninhalt (i18n-Wörterbuch)
-   in der aktuellen Sprache und verlinkt zur passenden Seite.
-   ============================================================ */
+/* Suche — durchsucht das i18n-Wörterbuch in der aktuellen Sprache
+   und verlinkt zur passenden Seite. */
 
 /* Präfix des Schlüssels (z. B. "home", "ev", "inf") → Zielseite. */
 const SEARCH_PAGE = {
@@ -510,9 +482,7 @@ function initSearch() {
   });
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
+/* Init */
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.page || "";
 

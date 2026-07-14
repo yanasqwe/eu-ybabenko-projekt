@@ -1,9 +1,5 @@
-/* ============================================================
-   i18n — Übersetzungen für DE / EN / RU / ZH
-   Standardsprache: Deutsch. Auswahl wird in localStorage gespeichert.
-   Verwendung im HTML:  <element data-i18n="key">…</element>
-   Für HTML-Inhalt:     <element data-i18n-html="key">…</element>
-   ============================================================ */
+/* Übersetzungen für DE / EN / RU / ZH. Standardsprache Deutsch, Auswahl in localStorage.
+   Verwendung im HTML: data-i18n="key" (Text) bzw. data-i18n-html="key" (HTML-Inhalt). */
 
 const LANGS = {
   de: { cc: "de", name: "Deutsch" },
@@ -44,7 +40,7 @@ const COUNTRY_NAMES = {
 };
 
 const I18N_DICT = {
-  /* ---------- Navigation & allgemein ---------- */
+  /* Navigation & allgemein */
   "nav.home":     { de: "Startseite",   en: "Home",        ru: "Главная",     zh: "首页" },
   "nav.chrono":   { de: "Chronologie",  en: "Timeline",    ru: "Хронология",  zh: "大事记" },
   "nav.influence":{ de: "EU & Welt",    en: "EU & World",  ru: "ЕС и мир",    zh: "欧盟与世界" },
@@ -56,7 +52,7 @@ const I18N_DICT = {
   "search.ph":    { de: "Schlüsselwort", en: "Keyword", ru: "Ключевое слово", zh: "关键词" },
   "search.none":  { de: "Keine Treffer", en: "No results", ru: "Ничего не найдено", zh: "无结果" },
 
-  /* ---------- Footer ---------- */
+  /* Footer */
   "footer.tagline": {
     de: "Ein Schulprojekt über die Europäische Union — ihre Geschichte, ihre Länder und ihr Einfluss auf die Welt.",
     en: "A school project about the European Union — its history, its countries and its influence on the world.",
@@ -76,9 +72,7 @@ const I18N_DICT = {
   "src.ep.d":   { de: "Europäisches Parlament",    en: "European Parliament", ru: "Европейский парламент", zh: "欧洲议会" },
   "src.es.d":   { de: "Eurostat — Statistikamt",   en: "Eurostat — statistics", ru: "Евростат — статистика", zh: "欧盟统计局" },
 
-  /* ============================================================
-     STARTSEITE
-     ============================================================ */
+  /* Startseite */
   "home.badge":    { de: "27 Länder · 1 Union", en: "27 countries · 1 Union", ru: "27 стран · 1 союз", zh: "27个国家 · 1个联盟" },
   "home.title1":   { de: "Die",        en: "The",        ru: "",            zh: "" },
   "home.titleGrad":{ de: "Europäische Union", en: "European Union", ru: "Европейский союз", zh: "欧洲联盟" },
@@ -118,9 +112,7 @@ const I18N_DICT = {
   "chart.legendL": { de: "Bewege die Maus über eine Zeile", en: "Hover over a row", ru: "Наведи курсор на строку", zh: "将鼠标悬停在某一行上" },
   "chart.legendR": { de: "Angaben in Millionen", en: "Figures in millions", ru: "Данные в миллионах", zh: "单位：百万" },
 
-  /* ============================================================
-     CHRONOLOGIE
-     ============================================================ */
+  /* Chronologie */
   "chrono.title":  { de: "EU Chronologie", en: "EU Timeline", ru: "Хронология ЕС", zh: "欧盟大事记" },
   "chrono.title1": { de: "EU", en: "EU", ru: "ЕС", zh: "欧盟" },
   "chrono.titleGrad": { de: "Chronologie", en: "Timeline", ru: "Хронология", zh: "大事记" },
@@ -263,9 +255,7 @@ const I18N_DICT = {
     zh: "<strong>简而言之：</strong>欧盟影响世界并非依靠军事力量，而是凭借其市场规模、标准的力量以及价值观的吸引力——这通常被称为“软实力”。",
   },
 
-  /* ============================================================
-     KONTAKT
-     ============================================================ */
+  /* Kontakt */
   "contact.title": { de: "Kontakt", en: "Contact", ru: "Контакт", zh: "联系" },
   "contact.titleGrad": { de: "aufnehmen", en: "us", ru: "с нами", zh: "我们" },
   "contact.lead": {
@@ -288,9 +278,7 @@ const I18N_DICT = {
   "contact.iTopicT":{ de: "Thema", en: "Topic", ru: "Тема", zh: "主题" },
   "contact.iTopicD":{ de: "Alles rund um die Europäische Union.", en: "Anything about the European Union.", ru: "Всё, что связано с Европейским союзом.", zh: "有关欧洲联盟的一切。" },
 
-  /* ============================================================
-     RECHTLICHE SEITEN (Platzhaltertext)
-     ============================================================ */
+  /* Rechtliche Seiten (Platzhaltertext) */
   "legal.demoNote": {
     de: "Hinweis: Dies ist ein Schulprojekt. Die folgenden Texte sind Musterbeispiele und ohne rechtliche Gültigkeit.",
     en: "Note: this is a school project. The following texts are sample examples with no legal validity.",
