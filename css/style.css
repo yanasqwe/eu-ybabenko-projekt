@@ -247,8 +247,11 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .btn-primary:hover { background: #5f89de; transform: translateY(-1px); }
 .btn-ghost { border: 1px solid var(--border-strong); background: transparent; color: var(--text); }
 .btn-ghost:hover { background: var(--surface); }
-.btn-gold { background: var(--gold); color: #2a1f00; }
-.btn-gold:hover { background: #e8ba45; transform: translateY(-1px); }
+/* helles Thema: dunkles Gold → weißer Text; dunkles Thema: helles Gold → dunkler Text */
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: #6e4d07; transform: translateY(-1px); }
+:root[data-theme="dark"] .btn-gold { color: #2a1f00; }
+:root[data-theme="dark"] .btn-gold:hover { background: #e8ba45; }
 
 /* EU-Flagge (statisch, echt) */
 .flag-figure { max-width: 420px; margin-inline: auto; }
