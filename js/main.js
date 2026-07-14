@@ -300,7 +300,6 @@ function buildTimeline() {
 
   // Automatischer Durchlauf: Strecke = Spurbreite − Bildschirmbreite
   const track = mount.querySelector(".timeline");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function setup() {
     const view = mount.clientWidth || window.innerWidth;
     const pan = Math.max(0, track.offsetWidth - view);
@@ -308,7 +307,8 @@ function buildTimeline() {
     // Tempo konstant halten (längere Strecke → längere Dauer)
     const dur = Math.max(20, Math.min(46, Math.round(pan / 55) + 14));
     track.style.setProperty("--tl-dur", dur + "s");
-    track.classList.toggle("running", !reduce && pan > 30);
+    // läuft unabhängig von „reduce motion“ (bewusste Design-Entscheidung, siehe CSS)
+    track.classList.toggle("running", pan > 30);
   }
   setup();
   window.addEventListener("resize", setup);
