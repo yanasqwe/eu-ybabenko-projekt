@@ -122,6 +122,7 @@ const I18N_DICT = {
      CHRONOLOGIE
      ============================================================ */
   "chrono.title":  { de: "EU Chronologie", en: "EU Timeline", ru: "Хронология ЕС", zh: "欧盟大事记" },
+  "chrono.title1": { de: "EU", en: "EU", ru: "ЕС", zh: "欧盟" },
   "chrono.titleGrad": { de: "Chronologie", en: "Timeline", ru: "Хронология", zh: "大事记" },
   "chrono.lead": {
     de: "Von der Nachkriegszeit bis heute — die wichtigsten Meilensteine auf dem Weg zur Europäischen Union.",
@@ -219,7 +220,8 @@ const I18N_DICT = {
   },
 
   "inf.title":  { de: "Der Einfluss der EU auf die Welt", en: "The EU's influence on the world", ru: "Влияние ЕС на мир", zh: "欧盟对世界的影响" },
-  "inf.titleGrad": { de: "auf die Welt", en: "on the world", ru: "на мир", zh: "对世界" },
+  "inf.title1": { de: "Der Einfluss der EU", en: "The EU's influence", ru: "Влияние ЕС", zh: "欧盟对世界的" },
+  "inf.titleGrad": { de: "auf die Welt", en: "on the world", ru: "на мир", zh: "影响" },
   "inf.lead": {
     de: "Die Europäische Union ist weit mehr als ein Binnenmarkt. Als größter Handelsblock und Wertegemeinschaft prägt sie Politik, Wirtschaft und Standards weltweit.",
     en: "The European Union is far more than a single market. As the world's largest trading bloc and a community of values, it shapes politics, economics and standards worldwide.",

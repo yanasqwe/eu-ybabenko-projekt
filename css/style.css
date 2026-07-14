@@ -4,31 +4,31 @@
 
 /* Design Tokens */
 :root {
-  --bg:          #0d1117;
-  --surface:     #151b23;
-  --surface-2:   #1b222c;
-  --border:      #262e3a;
-  --border-strong:#38424f;
+  --bg:          #f4f6f9;
+  --surface:     #ffffff;
+  --surface-2:   #eef1f6;
+  --border:      #dce1e8;
+  --border-strong:#bcc5d1;
 
-  --blue:        #4f7bd4;
-  --blue-dim:    #37527f;
-  --blue-tint:   #182339;
-  --gold:        #d9a92e;
+  --blue:        #3862bb;
+  --blue-dim:    #6f92d0;
+  --blue-tint:   #e9eff9;
+  --gold:        #8a6109;
   --flag-blue:   #003399;
 
-  --text:        #e7eaef;
-  --text-muted:  #9aa3b1;
-  --text-dim:    #69727f;
+  --text:        #1a2130;
+  --text-muted:  #4c5666;
+  --text-dim:    #626a78;
 
-  --ok:   #4ba585;
-  --err:  #d76b6b;
+  --ok:   #2f855a;
+  --err:  #c53030;
 
   --radius:    8px;
   --radius-sm: 6px;
 
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
 
-  --overlay: rgba(255,255,255,.04);
+  --overlay: rgba(0,0,0,.06);
 
   --maxw: 1120px;
   --nav-h: 70px;
@@ -39,28 +39,28 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Helles Thema — überschreibt nur die Farb-Tokens (dunkel = Standard) */
-:root[data-theme="light"] {
-  --bg:           #f4f6f9;
-  --surface:      #ffffff;
-  --surface-2:    #eef1f6;
-  --border:       #dce1e8;
-  --border-strong:#bcc5d1;
+/* Dunkles Thema — überschreibt nur die Farb-Tokens (hell = Standard) */
+:root[data-theme="dark"] {
+  --bg:           #0d1117;
+  --surface:      #151b23;
+  --surface-2:    #1b222c;
+  --border:       #262e3a;
+  --border-strong:#38424f;
 
-  --blue:         #3862bb;
-  --blue-dim:     #6f92d0;
-  --blue-tint:    #e9eff9;
-  --gold:         #8a6109;
+  --blue:         #4f7bd4;
+  --blue-dim:     #37527f;
+  --blue-tint:    #182339;
+  --gold:         #d9a92e;
 
-  --text:         #1a2130;
-  --text-muted:   #4c5666;
-  --text-dim:     #626a78;
+  --text:         #e7eaef;
+  --text-muted:   #9aa3b1;
+  --text-dim:     #69727f;
 
-  --ok:   #2f855a;
-  --err:  #c53030;
+  --ok:   #4ba585;
+  --err:  #d76b6b;
 
-  --overlay: rgba(0,0,0,.06);
-  --shadow:  0 10px 30px rgba(15, 23, 42, 0.12);
+  --overlay: rgba(255,255,255,.04);
+  --shadow:  0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 /* Reset */
@@ -105,6 +105,25 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .lead { color: var(--text-muted); font-size: 1.08rem; margin-top: 16px; }
 .grad { color: inherit; }
 
+/* GEMEINSAME FLÄCHEN & PANELS (mehrfach genutzt) */
+/* Karten */
+.chart, .form-card, .tl-card, .hist-item {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+/* kleine Steuerelemente der Kopfzeile */
+.lang-btn, .theme-toggle, .burger {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+}
+/* Aufklapp-Panels (Sprachmenü & Suche) */
+.lang-menu, .search-results {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .16s var(--ease), transform .16s var(--ease), visibility .16s;
+}
+.lang.open .lang-menu, .search-results.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
 /* HEADER / NAVIGATION */
 .site-header {
   position: sticky; top: 0; z-index: 100;
@@ -140,21 +159,13 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .lang { position: relative; }
 .lang-btn {
   display: flex; align-items: center; gap: 8px;
-  padding: 7px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  background: var(--surface); color: var(--text); font-weight: 500; font-size: 0.85rem;
+  padding: 7px 12px; color: var(--text); font-weight: 500; font-size: 0.85rem;
   transition: border-color .2s;
 }
 .lang-btn:hover { border-color: var(--border-strong); }
 .lang-btn .chev { transition: transform .2s var(--ease); opacity: .6; }
 .lang.open .lang-btn .chev { transform: rotate(180deg); }
-.lang-menu {
-  position: absolute; right: 0; top: calc(100% + 8px); min-width: 178px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: var(--shadow); padding: 5px; overflow: hidden;
-  opacity: 0; visibility: hidden; transform: translateY(-6px);
-  transition: opacity .16s var(--ease), transform .16s var(--ease), visibility .16s;
-}
-.lang.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.lang-menu { min-width: 178px; padding: 5px; overflow: hidden; }
 .lang-menu button {
   display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
   padding: 9px 11px; border-radius: var(--radius-sm); font-size: 0.9rem; color: var(--text-muted);
@@ -169,8 +180,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .theme-toggle {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; flex-shrink: 0;
-  border: 1px solid var(--border); border-radius: var(--radius-sm);
-  background: var(--surface); color: var(--text-muted);
+  color: var(--text-muted);
   transition: color .2s, border-color .2s, background .2s;
 }
 .theme-toggle:hover { color: var(--text); border-color: var(--border-strong); }
@@ -191,14 +201,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .search input::placeholder { color: var(--text-dim); }
 .search input:focus { outline: none; border-color: var(--border-strong); width: 230px; }
 .search input::-webkit-search-cancel-button { -webkit-appearance: none; }
-.search-results {
-  position: absolute; top: calc(100% + 8px); right: 0; width: min(390px, 82vw);
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: var(--shadow); overflow: hidden auto; max-height: 62vh;
-  opacity: 0; visibility: hidden; transform: translateY(-6px); z-index: 300;
-  transition: opacity .16s var(--ease), transform .16s var(--ease), visibility .16s;
-}
-.search-results.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.search-results { width: min(390px, 82vw); overflow: hidden auto; max-height: 62vh; z-index: 300; }
 .search-results a {
   display: block; padding: 10px 14px; border-bottom: 1px solid var(--border);
   transition: background .15s;
@@ -214,8 +217,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .search-empty { padding: 14px; color: var(--text-dim); font-size: 0.9rem; text-align: center; }
 
 /* Burger (mobile) */
-.burger { display: none; width: 40px; height: 40px; border: 1px solid var(--border);
-  border-radius: var(--radius-sm); background: var(--surface); flex-direction: column; gap: 4px;
+.burger { display: none; width: 40px; height: 40px; flex-direction: column; gap: 4px;
   align-items: center; justify-content: center; }
 .burger span { width: 17px; height: 2px; background: var(--text); border-radius: 2px; }
 
@@ -273,9 +275,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .note-box p { color: var(--text-muted); font-size: 0.95rem; }
 
 /* POPULATION CHART */
-.chart {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px;
-}
+.chart { padding: 30px; }
 .chart-row {
   display: grid; grid-template-columns: 180px 1fr 78px; align-items: center; gap: 16px;
   padding: 6px 12px; border-radius: var(--radius-sm); transition: background .18s;
@@ -335,7 +335,6 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .tl-card {
   position: absolute; left: 50%; transform: translateX(-50%); width: 190px;
   display: block; text-decoration: none; color: inherit; cursor: pointer;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 12px; transition: border-color .2s var(--ease), transform .2s var(--ease);
 }
 .tl-card:hover { border-color: var(--gold); transform: translateX(-50%) translateY(-4px); }
@@ -355,7 +354,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .history { display: grid; gap: 20px; }
 .hist-item {
   display: grid; grid-template-columns: 240px 1fr; gap: 30px; align-items: stretch;
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  overflow: hidden;
   scroll-margin-top: 92px; /* Platz für den fixierten Header beim Anspringen */
 }
 /* kurzes Aufleuchten, wenn man über den Zeitstrahl hierher springt */
@@ -391,7 +390,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .article > * + * { margin-top: 20px; }
 .article h2 { font-size: 1.6rem; margin-top: 46px; font-weight: 600; }
 .article h2:first-of-type { margin-top: 0; }
-.article p { color: #c3cbd8; font-size: 1.08rem; line-height: 1.75; }
+.article p { color: var(--text-muted); font-size: 1.08rem; line-height: 1.75; }
 .article figure.ph { border-radius: var(--radius); min-height: 300px; margin-block: 34px; border: 1px solid var(--border); }
 .article .callout {
   background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--blue);
@@ -402,7 +401,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 
 /* CONTACT FORM */
 .contact-grid { display: grid; grid-template-columns: 1fr 0.78fr; gap: 44px; align-items: start; }
-.form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; }
+.form-card { padding: 32px; }
 .field { margin-bottom: 20px; }
 .field label { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 8px; }
 .field input, .field textarea {
@@ -431,7 +430,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .contact-aside .info-item span { color: var(--text-muted); font-size: 0.9rem; }
 
 /* LEGAL PAGES */
-.legal { max-width: 720px; margin-inline: auto; }
+.legal { max-width: none; }
 .legal h2 { font-size: 1.25rem; margin-top: 34px; font-weight: 600; }
 .legal h2:first-of-type { margin-top: 0; }
 .legal .note-box + h2 { margin-top: 28px; }

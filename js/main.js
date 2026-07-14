@@ -17,9 +17,9 @@ const CONTACT_MAIL = "babenko.yana2206@gmail.com";
 const I18N = window.EU_I18N;
 
 /* ============================================================
-   THEMA (hell / dunkel) — dunkel ist Standard
+   THEMA (hell / dunkel) — hell ist Standard
    ============================================================ */
-function currentTheme() { return localStorage.getItem("eu_theme") || "dark"; }
+function currentTheme() { return localStorage.getItem("eu_theme") || "light"; }
 document.documentElement.dataset.theme = currentTheme(); // früh setzen → kein Flackern
 
 const THEME_ICONS = {
