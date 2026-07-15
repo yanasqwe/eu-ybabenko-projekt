@@ -422,6 +422,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 .bot-input { display: flex; gap: 10px; }
 .bot-input input { flex: 1; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: var(--font-sans); font-size: 0.95rem; transition: border-color .2s; }
 .bot-input input:focus { outline: none; border-color: var(--blue); }
+.bot-input .btn { justify-content: center; }
 .bot-note { margin-top: 14px; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
 .bot-note a { color: var(--blue); font-weight: 600; }
 #contactForm { scroll-margin-top: 90px; }
