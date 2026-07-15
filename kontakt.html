@@ -20,6 +20,23 @@
 
   <section style="padding-top:20px">
     <div class="container">
+      <div class="bot-card reveal">
+        <div class="bot-head">
+          <span class="bot-avatar">★</span>
+          <div><b data-i18n="bot.title"></b><small data-i18n="bot.subtitle"></small></div>
+        </div>
+        <div class="bot-log" id="botLog"></div>
+        <form class="bot-input" id="botForm" novalidate>
+          <input type="text" id="botText" data-i18n-ph="bot.ph" autocomplete="off" aria-label="Bot">
+          <button type="submit" class="btn btn-primary" data-i18n="bot.send"></button>
+        </form>
+        <p class="bot-note" data-i18n-html="bot.note"></p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="container">
       <div class="contact-grid">
 
         <div class="form-card reveal">
@@ -58,6 +75,8 @@
   </section>
 
   <script src="js/i18n.js"></script>
+  <script src="js/countries.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/bot.js"></script>
 </body>
 </html>
