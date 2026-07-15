@@ -260,7 +260,7 @@ const I18N_DICT = {
   "land.relTitle":  { de: "Verbindung zur EU", en: "Connection to the EU", ru: "Связь с ЕС", zh: "与欧盟的联系" },
   "land.joinTitle": { de: "Wie das Land in die EU kam", en: "How the country joined the EU", ru: "Как страна вступила в ЕС", zh: "该国如何加入欧盟" },
   "land.diffTitle": { de: "Welche Schwierigkeiten es gab", en: "What difficulties arose", ru: "Какие возникали сложности", zh: "曾出现哪些困难" },
-  "land.back":     { de: "← Zurück zum Diagramm", en: "← Back to the chart", ru: "← Назад к диаграмме", zh: "← 返回图表" },
+  "land.back":     { de: "< Zurück zum Diagramm", en: "< Back to the chart", ru: "< Назад к диаграмме", zh: "< 返回图表" },
 
   /* Kontakt */
   "contact.title": { de: "Kontakt", en: "Contact", ru: "Контакт", zh: "联系" },
