@@ -543,6 +543,8 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
   .chart-row .cn { font-size: 0.8rem; }
   .chart { padding: 18px; }
   section { padding-block: 56px; }
+  .bot-input { flex-direction: column; }
+  .bot-input .btn { width: 100%; }
 }
 @media (max-width: 460px) {
   .stat-grid { grid-template-columns: 1fr; }
