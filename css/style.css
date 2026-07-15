@@ -370,7 +370,7 @@ h2.section-title { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; }
 }
 .hist-item.flash {
   border-color: var(--gold);
-  box-shadow: 0 0 0 2px var(--gold), 0 0 26px 6px rgba(217,169,46,.5);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 14px 1px rgba(217,169,46,.3);
 }
 .hist-item:nth-child(even) { grid-template-columns: 1fr 240px; }
 .hist-item:nth-child(even) .ph { order: 2; }
