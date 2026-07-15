@@ -151,6 +151,9 @@ const TO_TOP = `
     </svg>
   </button>`;
 
+/* Aktiver Ländercode auf der Detailseite (land.html) */
+let landCode = null;
+
 /* Übersetzung anwenden */
 function applyLang(lang) {
   document.documentElement.lang = lang;
@@ -180,6 +183,20 @@ function applyLang(lang) {
     const c = I18N.countries[el.getAttribute("data-country")];
     if (c) el.textContent = c[lang] ?? c.de;
   });
+
+  // Länderseite: Texte und Seitentitel
+  if (landCode) {
+    const cc = landCode;
+    const info = window.EU_COUNTRY_INFO;
+    if (info && info[cc]) {
+      const block = info[cc][lang] ?? info[cc].de;
+      document.querySelectorAll("[data-cland]").forEach(el => {
+        el.textContent = block[el.getAttribute("data-cland")] ?? "";
+      });
+    }
+    const c = I18N.countries[cc];
+    if (c) document.title = (c[lang] ?? c.de) + " — Europäische Union";
+  }
 }
 
 /* Bevölkerung in Mio. (Eurostat, gerundet), absteigend sortiert */
@@ -200,11 +217,11 @@ function buildChart() {
   const rows = POP.map(([code, val]) => {
     const pct = (val / max) * 100;
     return `
-      <div class="chart-row">
+      <a class="chart-row" href="land.html?c=${code}">
         <span class="cn"><img class="flag" src="assets/flags/${code.toLowerCase()}.svg" alt="" loading="lazy"><span data-country="${code}"></span></span>
         <div class="chart-track"><div class="chart-bar" data-w="${pct}"></div></div>
         <span class="chart-val">${val.toFixed(1)}</span>
-      </div>`;
+      </a>`;
   }).join("");
   mount.innerHTML = rows;
 }
@@ -223,6 +240,24 @@ function animateChart() {
     });
   }, { threshold: 0.2 });
   io.observe(mount);
+}
+
+/* Länder-Detailseite (land.html?c=XX) aufbauen */
+function buildCountryPage() {
+  if (document.body.dataset.page !== "land") return;
+  const info = window.EU_COUNTRY_INFO;
+  const params = new URLSearchParams(location.search);
+  let code = (params.get("c") || "").toUpperCase();
+  if (!info || !info[code]) code = "DE";
+  landCode = code;
+
+  const cc = code.toLowerCase();
+  const set = (id, fn) => { const el = document.getElementById(id); if (el) fn(el); };
+  set("landName",    el => el.dataset.country = code);
+  set("landCaption", el => el.dataset.country = code);
+  set("landFlag",    el => el.src = "assets/flags/" + cc + ".svg");
+  set("landPhoto",   el => el.src = "assets/images/countries/" + cc + ".jpg");
+  set("landYear",    el => el.textContent = info[code].year);
 }
 
 /* Zeitstrahl (gebogene Kurve mit Knoten) */
@@ -475,6 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // dynamische Inhalte
   buildChart();
   buildTimeline();
+  buildCountryPage();
 
   // Sprache anwenden
   applyLang(I18N.get());

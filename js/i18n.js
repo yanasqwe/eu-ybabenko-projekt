@@ -255,6 +255,16 @@ const I18N_DICT = {
     zh: "<strong>简而言之：</strong>欧盟影响世界并非依靠军事力量，而是凭借其市场规模、标准的力量以及价值观的吸引力——这通常被称为“软实力”。",
   },
 
+  /* Länderseite */
+  "land.eyebrow":  { de: "Mitgliedsland der EU", en: "EU member state", ru: "Страна-член ЕС", zh: "欧盟成员国" },
+  "land.since":    { de: "Mitglied seit", en: "Member since", ru: "В составе ЕС с", zh: "加入年份" },
+  "land.founder":  { de: "Gründungsmitglied (seit 1958)", en: "Founding member (since 1958)", ru: "Страна-основатель (с 1958)", zh: "创始成员国（自1958年）" },
+  "land.relTitle":  { de: "Verbindung zur EU", en: "Connection to the EU", ru: "Связь с ЕС", zh: "与欧盟的联系" },
+  "land.joinTitle": { de: "Wie das Land in die EU kam", en: "How the country joined the EU", ru: "Как страна вступила в ЕС", zh: "该国如何加入欧盟" },
+  "land.diffTitle": { de: "Welche Schwierigkeiten es gab", en: "What difficulties arose", ru: "Какие возникали сложности", zh: "曾出现哪些困难" },
+  "land.back":     { de: "← Zurück zum Diagramm", en: "← Back to the chart", ru: "← Назад к диаграмме", zh: "← 返回图表" },
+  "land.pop":      { de: "Einwohner (Mio.)", en: "Inhabitants (millions)", ru: "Жителей (млн)", zh: "居民（百万）" },
+
   /* Kontakt */
   "contact.title": { de: "Kontakt", en: "Contact", ru: "Контакт", zh: "联系" },
   "contact.titleGrad": { de: "aufnehmen", en: "us", ru: "с нами", zh: "我们" },
