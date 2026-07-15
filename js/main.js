@@ -336,9 +336,8 @@ function buildTimeline() {
     const io = new IntersectionObserver((entries, obs) => {
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
-      target.classList.remove("flash");
-      void target.offsetWidth; // Reflow erzwingen, damit die Animation neu startet
       target.classList.add("flash");
+      setTimeout(() => target.classList.remove("flash"), 1000);
     }, { threshold: 0.35 });
     io.observe(target);
   });
