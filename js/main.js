@@ -1,9 +1,7 @@
 /* Kopf-/Fußzeile, Sprachwechsel, Diagramm, Zeitstrahl, Suche und Kontaktformular. */
 
-/* Formspree-ID eintragen. Solange "DEIN_FORMSPREE_ID" steht, öffnet das
-   Formular als Fallback das E-Mail-Programm (mailto). */
+/* Formspree-ID für das Kontaktformular. */
 const FORMSPREE_ID = "mpqgevwr";
-const CONTACT_MAIL = "babenko.yana2206@gmail.com";
 
 const I18N = window.EU_I18N;
 
@@ -12,7 +10,6 @@ function currentTheme() { return localStorage.getItem("eu_theme") || "light"; }
 document.documentElement.dataset.theme = currentTheme(); // früh setzen → kein Flackern
 
 const THEME_ICONS = {
-  // aktives Thema dunkel → Sonne zeigen (Klick schaltet auf hell) und umgekehrt
   dark:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`,
   light: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`,
 };
@@ -252,7 +249,7 @@ function buildTimeline() {
   const nodes = EVENTS.map((ev, i) => {
     const x = 110 + i * ((W - 220) / (n - 1));
     const y = wave(x);
-    const up = i % 2 === 0; // strikt abwechselnd oben/unten → keine Überlappung
+    const up = i % 2 === 0; 
     return `
       <div class="tl-node ${up ? "up" : "down"}" style="left:${(x / W) * 100}%; top:${(y / H) * 100}%">
         <span class="pt"></span>
@@ -283,7 +280,6 @@ function buildTimeline() {
     const view = mount.clientWidth || window.innerWidth;
     const pan = Math.max(0, track.offsetWidth - view);
     track.style.setProperty("--tl-pan", pan + "px");
-    // Tempo konstant halten (längere Strecke → längere Dauer)
     const dur = Math.max(20, Math.min(46, Math.round(pan / 55) + 14));
     track.style.setProperty("--tl-dur", dur + "s");
     track.classList.toggle("running", pan > 30);
@@ -329,17 +325,6 @@ function initContactForm() {
     const email = form.email.value.trim();
     const message = form.message.value.trim();
     if (!email || !message) return;
-
-    // Fallback: kein Formspree konfiguriert → mailto öffnen
-    if (FORMSPREE_ID === "DEIN_FORMSPREE_ID") {
-      const subj = encodeURIComponent("EU-Website: Frage von " + email);
-      const body = encodeURIComponent(message + "\n\n— " + email);
-      window.location.href = `mailto:${CONTACT_MAIL}?subject=${subj}&body=${body}`;
-      status.className = "form-status ok";
-      status.textContent = I18N.t("contact.ok", lang());
-      form.reset();
-      return;
-    }
 
     try {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
