@@ -278,7 +278,7 @@ const I18N_DICT = {
   "contact.iTopicT":{ de: "Thema", en: "Topic", ru: "Тема", zh: "主题" },
   "contact.iTopicD":{ de: "Alles rund um die Europäische Union.", en: "Anything about the European Union.", ru: "Всё, что связано с Европейским союзом.", zh: "有关欧洲联盟的一切。" },
 
-  /* Rechtliche Seiten (Platzhaltertext) */
+  /* Rechtliche Seiten */
   "legal.demoNote": {
     de: "Hinweis: Dies ist ein Schulprojekt. Die folgenden Texte sind Musterbeispiele und ohne rechtliche Gültigkeit.",
     en: "Note: this is a school project. The following texts are sample examples with no legal validity.",

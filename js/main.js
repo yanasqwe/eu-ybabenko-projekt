@@ -344,9 +344,6 @@ function initContactForm() {
   });
 }
 
-/* Suche — durchsucht das i18n-Wörterbuch in der aktuellen Sprache
-   und verlinkt zur passenden Seite. */
-
 /* Präfix des Schlüssels (z. B. "home", "ev", "inf") → Zielseite. */
 const SEARCH_PAGE = {
   home: "index.html", fact: "index.html", chart: "index.html",
@@ -393,7 +390,6 @@ function runSearch(rawQuery) {
   const lang = I18N.get();
   const q = rawQuery.trim().toLowerCase();
   if (q.length < 2) return [];
-  // Pro Ziel (Seite + Anker) nur ein Treffer — der längste (informativste) Ausschnitt.
   const byDest = new Map();
   for (const key in I18N.dict) {
     const target = searchTargetForKey(key);
