@@ -5,7 +5,7 @@ const FORMSPREE_ID = "mpqgevwr";
 
 const I18N = window.EU_I18N;
 
-/* Thema (hell / dunkel) — hell ist Standard */
+/* Thema (hell / dunkel) - hell ist Standard */
 function currentTheme() { return localStorage.getItem("eu_theme") || "light"; }
 document.documentElement.dataset.theme = currentTheme(); // früh setzen → kein Flackern
 
@@ -195,7 +195,7 @@ function applyLang(lang) {
       });
     }
     const c = I18N.countries[cc];
-    if (c) document.title = (c[lang] ?? c.de) + " — Europäische Union";
+    if (c) document.title = (c[lang] ?? c.de) + " - Europäische Union";
   }
 }
 
@@ -331,7 +331,7 @@ function buildTimeline() {
     if (!target) return;
     e.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
-    // Erst aufleuchten, wenn das Ziel wirklich im Bild ist — sonst ist die
+    // Erst aufleuchten, wenn das Ziel wirklich im Bild ist - sonst ist die
     // Animation auf großen Monitoren vorbei, bevor das Scrollen ankommt.
     const io = new IntersectionObserver((entries, obs) => {
       if (!entries[0].isIntersecting) return;
