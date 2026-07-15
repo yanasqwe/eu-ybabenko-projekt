@@ -109,7 +109,6 @@ const I18N_DICT = {
   "chart.eyebrow": { de: "Vergleich der Mitgliedsländer", en: "Comparing member states", ru: "Сравнение стран-участниц", zh: "成员国比较" },
   "chart.title":   { de: "Bevölkerung der EU-Länder", en: "Population of EU countries", ru: "Население стран ЕС", zh: "欧盟各国人口" },
   "chart.sub":     { de: "Einwohnerzahl in Millionen (gerundet).", en: "Number of inhabitants in millions (rounded).", ru: "Число жителей в миллионах (округлено).", zh: "居民数量（百万，四舍五入）。" },
-  "chart.legendL": { de: "Bewege die Maus über eine Zeile", en: "Hover over a row", ru: "Наведи курсор на строку", zh: "将鼠标悬停在某一行上" },
   "chart.legendR": { de: "Angaben in Millionen", en: "Figures in millions", ru: "Данные в миллионах", zh: "单位：百万" },
 
   /* Chronologie */

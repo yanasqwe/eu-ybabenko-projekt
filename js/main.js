@@ -331,9 +331,16 @@ function buildTimeline() {
     if (!target) return;
     e.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
-    target.classList.remove("flash");
-    void target.offsetWidth; // Reflow erzwingen, damit die Animation neu startet
-    target.classList.add("flash");
+    // Erst aufleuchten, wenn das Ziel wirklich im Bild ist — sonst ist die
+    // Animation auf großen Monitoren vorbei, bevor das Scrollen ankommt.
+    const io = new IntersectionObserver((entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      target.classList.remove("flash");
+      void target.offsetWidth; // Reflow erzwingen, damit die Animation neu startet
+      target.classList.add("flash");
+    }, { threshold: 0.35 });
+    io.observe(target);
   });
 }
 
