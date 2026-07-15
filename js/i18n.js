@@ -54,10 +54,10 @@ const I18N_DICT = {
 
   /* Footer */
   "footer.tagline": {
-    de: "Ein Schulprojekt über die Europäische Union — ihre Geschichte, ihre Länder und ihr Einfluss auf die Welt.",
-    en: "A school project about the European Union — its history, its countries and its influence on the world.",
-    ru: "Школьный проект о Европейском союзе — его история, страны и влияние на мир.",
-    zh: "关于欧洲联盟的学校项目——它的历史、成员国及其对世界的影响。",
+    de: "Ein Schulprojekt über die Europäische Union - ihre Geschichte, ihre Länder und ihr Einfluss auf die Welt.",
+    en: "A school project about the European Union - its history, its countries and its influence on the world.",
+    ru: "Школьный проект о Европейском союзе - его история, страны и влияние на мир.",
+    zh: "关于欧洲联盟的学校项目-它的历史、成员国及其对世界的影响。",
   },
   "footer.sources":  { de: "Offizielle Quellen", en: "Official sources", ru: "Официальные источники", zh: "官方来源" },
   "footer.legal":    { de: "Rechtliches",        en: "Legal",            ru: "Правовое",              zh: "法律信息" },
